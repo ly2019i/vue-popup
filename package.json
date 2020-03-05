@@ -1,0 +1,20 @@
+{
+  "name": "vue-popup-test",
+  "version": "1.0.0",
+  "description": "test vue plugins",
+  "main": "index.js",
+  "keyword": "vue vue-popup popup",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ly2019i/vue-popup.git"
+  },
+  "author": "ly2019i",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ly2019i/vue-popup/issues"
+  },
+  "homepage": "https://github.com/ly2019i/vue-popup#readme"
+}
