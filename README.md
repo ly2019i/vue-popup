@@ -2,8 +2,8 @@
     npm install vue-popup
 
 ### 可选参数
-   参数    |   说明    |   可选参数    |   参数类型    
-   -       |    :-     |    :-         |       :-     |    :-:    
+   参数    |   说明    |   可选参数    |   参数类型   
+  ---|:--:|:--:|---:
    type    |   弹窗形式    |   confirm、toast(默认为confirm)   |   String  
    buttonConfirmText |   确认按钮文本  |   -    |   String  
    buttonCancelText |   取消按钮文本  |   -    |   String  
