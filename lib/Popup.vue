@@ -9,7 +9,7 @@
         <p class="title" v-if="!isToast">{{titleText}}</p>
         <p class="content">{{content}}</p>
         <div class="btns"  v-if="!isToast">
-          <button @click="hide" class="cancel">{{buttonCancelText}}</button>
+          <button @click="cancel" class="cancel">{{buttonCancelText}}</button>
           <button @click="confirm">{{buttonConfirmText}}</button>
         </div>
       </div>
@@ -26,7 +26,7 @@ let TYPE_ELSE = 'else';
 let BUTTON_CONFIRM_TEXT = '确定';
 let BUTTON_CANCEL_TEXT = '取消';
 export default {
-  name: 'my-popup',
+  name: 'vue-popup',
   props:{
     type: {
       type: String,
@@ -102,7 +102,11 @@ export default {
   },
   watch:{
     type: function (data){
-      console.log(data)
+      if(data == 'toast'){
+        this.autoClosePopup()
+      }else{
+        this.isToast = false
+      }
     }
   },
   methods: {
@@ -125,6 +129,10 @@ export default {
       this.timer = setTimeout(() => {
         this.hide()
       }, this.$props.autoClose*1000);
+    },
+    cancel() {
+      this.hide();
+      this.$emit('buttonCallback',false)
     }
   }
 }
@@ -186,7 +194,7 @@ p{
         color: #cecece;
       }
       button{
-        font-size: 16px;
+        font-size: 14px;
         border: none;
         background: none;
         color: blue;
