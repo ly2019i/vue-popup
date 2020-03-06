@@ -29,3 +29,11 @@
   函数名称    |   说明    |   返回值类型    |   参数类型
   ---|:--:|:--:|---:
    buttonCallback |   点击确认按钮的回调函数  |   true    |   Boolean
+
+### 新增
+    toast的成功和失败图标
+
+    参数    |   说明    |   可选参数    |   参数类型   
+  ---|:--:|:--:|---:
+   showToastIcon    |   是否显示toast的图标    |   true,false(默认为true)   |   Boolean  
+   toastState |   toast的状态  |   success,fail    |   String  
