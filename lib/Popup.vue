@@ -277,5 +277,10 @@ p {
 }
 .top {
   flex-direction: column;
+  align-items: center;
+  .popup_content {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 }
 </style>
