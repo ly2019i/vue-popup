@@ -5,12 +5,13 @@
     <div class="popup_box" :class="position" @click.self="hide">
       <div class="popup_content">
         <!-- <slot></slot> -->
-        <div class="close" @click="hide" v-if="showCloseButton">X</div>
-        <p>{{titleText}}</p>
-        <p>{{content}}</p>
-        <div class="btns">
-        <button @click="hide" class="cancel">{{buttonCancelText}}</button>
-        <button @click="confirm">{{buttonConfirmText}}</button></div>
+        <div class="close" @click="hide" v-if="showCloseBtn">X</div>
+        <p class="title" v-if="!isToast">{{titleText}}</p>
+        <p class="content">{{content}}</p>
+        <div class="btns"  v-if="!isToast">
+          <button @click="hide" class="cancel">{{buttonCancelText}}</button>
+          <button @click="confirm">{{buttonConfirmText}}</button>
+        </div>
       </div>
     </div>
   </div>
@@ -74,23 +75,56 @@ export default {
       default() {
         return true
       }
+    },
+    autoClose: {
+      type: Number,
+      default() {
+        return 3;
+      }
     }
   },
   data() {
     return {
-      display: false
+      display: false,
+      isToast: false
+    }
+  },
+  created(){
+  },
+  computed:{
+    showCloseBtn:function (){
+      if(this.$props.position !== 'center' || this.$props.type !== 'confirm'){
+        return false;
+      }else{
+        return true
+      }
+    }
+  },
+  watch:{
+    type: function (data){
+      console.log(data)
     }
   },
   methods: {
     show() {
       this.display = true;
+      if(this.$props.type == 'toast'){
+        this.autoClosePopup()
+      }
     },
     hide() {
       this.display = false;
+      clearTimeout(this.timer)
     },
     confirm() {
       this.hide();
       this.$emit('buttonCallback',true)
+    },
+    autoClosePopup() {
+      this.isToast = true;
+      this.timer = setTimeout(() => {
+        this.hide()
+      }, this.$props.autoClose*1000);
     }
   }
 }
@@ -99,6 +133,7 @@ export default {
 p{
   margin: 0;
   padding: 0;
+  text-align: left;
 }
 .popup{
   position: fixed;
@@ -129,8 +164,8 @@ p{
     background: #fff;
     position: relative;
     z-index: 10;
-    min-width: 150px
-    ;
+    min-width: 150px;
+    max-width: 70%;
     .close{
       width: 24px;
       height: 24px;
@@ -150,22 +185,28 @@ p{
       .cancel{
         color: #cecece;
       }
+      button{
+        font-size: 16px;
+        border: none;
+        background: none;
+        color: blue;
+        margin-top: 10px;
+      }
     }
-    button{
-      font-size: 16px;
-      border: none;
-      background: none;
-      color: blue
+    .title{
+      font-size: 18px;
+      line-height: 30px;
+    }
+    .content{
+      font-size: 12px;
+      line-height: 16px;
+      margin: 10px 0;
     }
   }
 }
 .center{
   align-items: center;
   justify-content: center;
-}
-// .left{}
-.right{
-  flex-direction:row-reverse;
 }
 .bottom{
   flex-direction:column-reverse;

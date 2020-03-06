@@ -1,7 +1,7 @@
 #  安装
     npm install vue-popup
 
-### 可选参数
+### PROPS
    参数    |   说明    |   可选参数    |   参数类型   
   ---|:--:|:--:|---:
    type    |   弹窗形式    |   confirm、toast(默认为confirm)   |   String  
@@ -11,8 +11,8 @@
    titleText |   标题文本  |   ''    |   String  
    content |   弹窗内容  |   ''    |   String  
    showCloseBtn |   是否显示关闭按钮  |   默认为true    |   Boolean  
-   position |   弹出的位置  |   center、left、right、top、bottom(默认为center)    |   String  
-  autoClose |   弹窗自动关闭时间  |   默认为3秒    |   Number  
+   position |   弹出的位置  |   center、top、bottom(默认为center)    |   String  
+   autoClose |   Toast的弹窗自动关闭时间  |   默认为3秒    |   Number  
 
 ### 回调函数
   函数名称    |   说明    |   返回值类型    |   参数类型
